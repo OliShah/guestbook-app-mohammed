@@ -1,0 +1,11 @@
+FROM registry.access.redhat.com/ubi10/go-toolset:10.0 AS builder
+WORKDIR /app/backend
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o guestbook-api
+
+FROM registry.access.redhat.com/ubi10:10.0
+WORKDIR /app
+COPY --from=builder /app/backend/guestbook-api .
+CMD ["./guestbook-api"]
