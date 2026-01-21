@@ -1,0 +1,46 @@
+name: Build-and-Push
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman
+
+      - name: GHCR Login
+        run: |
+          echo "${{ secrets.PODMAN_GHCR_PAT }}" | podman login ghcr.io \
+            -u ${{ github.actor }} \
+            --password-stdin
+
+      - name: Backend Build + Push
+        run: |
+          podman build -t ghcr.io/${{ github.repository_owner }}/backendContainer:latest -f app/backend/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner }}/backendContainer:latest
+
+      - name: Frontend Build + Push
+        run: |
+          podman build -t ghcr.io/${{ github.repository_owner }}/frontendContainer:latest -f app/frontend/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner }}/frontendContainer:latest
+
+      - name: Redis Build + Push
+        run: |
+          podman build -t ghcr.io/${{ github.repository_owner }}/redisContainer:latest -f app/backend/redis/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner }}/redisContainer:latest
+
+      - name: Postgres Build + Push
+        run: |
+          podman build -t ghcr.io/${{ github.repository_owner }}/postgresContainer:latest -f app/backend/postgres/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner }}/postgresContainer:latest
