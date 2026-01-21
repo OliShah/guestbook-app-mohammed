@@ -29,21 +29,23 @@ jobs:
             -p $GHCR_PAT
 
       - name: Backend Build + Push
+        env:
+          REPO_OWNER:olishah
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/backend-container:latest -f app/backend/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/backendContainer:latest
+          podman build -t ghcr.io/$REPO_OWNER/backend-container:latest -f app/backend/Containerfile .
+          podman push ghcr.io/$REPO_OWNER/backendContainer:latest
 
       - name: Frontend Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/frontend-container:latest -f app/frontend/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/frontendContainer:latest
+          podman build -t ghcr.io/$REPO_OWNER/frontend-container:latest -f app/frontend/Containerfile .
+          podman push ghcr.io/$REPO_OWNER/frontendContainer:latest
 
       - name: Redis Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/redis-container:latest -f app/backend/redis/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/redisContainer:latest
+          podman build -t ghcr.io/$REPO_OWNER/redis-container:latest -f app/backend/redis/Containerfile .
+          podman push ghcr.io/$REPO_OWNER/redisContainer:latest
 
       - name: Postgres Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/postgres-container:latest -f app/backend/postgres/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/postgres-container:latest
+          podman build -t ghcr.io/$REPO_OWNER/postgres-container:latest -f app/backend/postgres/Containerfile .
+          podman push ghcr.io/$$REPO_OWNER/postgres-container:latest
