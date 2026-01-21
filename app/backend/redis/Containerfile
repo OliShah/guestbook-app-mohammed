@@ -1,0 +1,5 @@
+FROM quay.io/kurs/redis:latest
+ENV	REDIS_PORT=6379
+VOLUME /data
+EXPOSE 6379
+CMD ["redis-server","--dir","/data"]
