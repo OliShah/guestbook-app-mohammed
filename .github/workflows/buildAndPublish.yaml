@@ -20,10 +20,12 @@ jobs:
           sudo apt-get install -y podman
 
       - name: GHCR Login
+        env:
+          GHCR_PAT: ${{secrets.PODMAN_GHCR_PAT}}
         run: |
-          echo "${{ secrets.PODMAN_GHCR_PAT }}" | podman login ghcr.io \
+          podman login ghcr.io \
             -u ${{ github.actor }} \
-            --password-stdin
+            -p $GHCR_PAT
 
       - name: Backend Build + Push
         run: |
