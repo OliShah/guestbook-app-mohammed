@@ -30,20 +30,20 @@ jobs:
 
       - name: Backend Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner | lower }}/backend-container:latest -f app/backend/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner | lower }}/backendContainer:latest
+          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/backend-container:latest -f app/backend/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/backendContainer:latest
 
       - name: Frontend Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner | lower}}/frontend-container:latest -f app/frontend/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner | lower }}/frontendContainer:latest
+          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/frontend-container:latest -f app/frontend/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/frontendContainer:latest
 
       - name: Redis Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner | lower}}/redis-container:latest -f app/backend/redis/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner | lower}}/redisContainer:latest
+          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/redis-container:latest -f app/backend/redis/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/redisContainer:latest
 
       - name: Postgres Build + Push
         run: |
-          podman build -t ghcr.io/${{ github.repository_owner | lower}}/postgres-container:latest -f app/backend/postgres/Containerfile .
-          podman push ghcr.io/${{ github.repository_owner | lower}}/postgres-container:latest
+          podman build -t ghcr.io/${{ github.repository_owner.toLowerCase()}}/postgres-container:latest -f app/backend/postgres/Containerfile .
+          podman push ghcr.io/${{ github.repository_owner.toLowerCase()}}/postgres-container:latest
