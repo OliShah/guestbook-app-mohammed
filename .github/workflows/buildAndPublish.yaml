@@ -22,7 +22,7 @@ jobs:
 
       - name: GHCR Login
         env:
-          GHCR_PAT: ${{secrets.PODMAN_GHCR_PAT}}
+          GHCR_PAT: ${{secrets.PODMAN_GCHR_PAT}}
         run: |
           podman login ghcr.io \
             -u ${{ github.actor }} \
