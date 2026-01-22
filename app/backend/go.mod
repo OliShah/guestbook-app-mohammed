@@ -1,4 +1,4 @@
-module github.com/jonasbjork/guestbook-app
+module github.com/olishah/guestbook-app-mohammed
 
 go 1.24.0
 
