@@ -67,7 +67,7 @@ jobs:
         run: |
           podman build \
           -t ghcr.io/$REPO_OWNER/postgres-container:latest \
-          -f app/backend/postgres/Containerfile \
+          -f app/backend/postgresql/Containerfile \
           app/backend
 
           podman push ghcr.io/$REPO_OWNER/postgres-container:latest
