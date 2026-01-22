@@ -55,8 +55,8 @@ jobs:
           REPO_OWNER: olishah
         run: |
           podman build \
-          -t ghcr.io/$REPO_OWNER/redis-container:latest
-          -f app/backend/redis/Containerfile 
+          -t ghcr.io/$REPO_OWNER/redis-container:latest \
+          -f app/backend/redis/Containerfile \
           app/backend
 
           podman push ghcr.io/$REPO_OWNER/redis-container:latest
@@ -66,8 +66,8 @@ jobs:
           REPO_OWNER: olishah
         run: |
           podman build \
-          -t ghcr.io/$REPO_OWNER/postgres-container:latest 
-          -f app/backend/postgres/Containerfile
+          -t ghcr.io/$REPO_OWNER/postgres-container:latest \
+          -f app/backend/postgres/Containerfile \
           app/backend
 
           podman push ghcr.io/$REPO_OWNER/postgres-container:latest
