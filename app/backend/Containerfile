@@ -3,16 +3,23 @@ WORKDIR /app/backend
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN chgrp -R 0 . && \
-    chmod -R g+rwX .
+
+RUN id
+RUN ls -la .
+
+RUN chmod -R g+rwX .
 RUN go build -o guestbook-api
 RUN chmod g+x guestbook-api
 
 FROM registry.access.redhat.com/ubi10:10.0
 WORKDIR /app
 COPY --from=builder /app/backend/guestbook-api .
-RUN chgrp -R 0 /app && \
-    chmod -R g+rwX /app && \
-    chmod g+x guestbook-api
+
+RUN id
+RUN ls -la .
+
+RUN chmod -R g+rwX /app
+RUN chmod g+x guestbook-api
+USER 1001
 EXPOSE 8080
 CMD ["./guestbook-api"]
