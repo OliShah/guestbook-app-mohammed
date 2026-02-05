@@ -10,3 +10,5 @@ ENV	POSTGRESQL_DATABASE=guestbook \
 VOLUME	/var/lib/pgsql/data
 
 EXPOSE	5432
+
+CMD ["postgres", "-D", "/var/lib/pgsql/data"
