@@ -7,6 +7,6 @@ ENV	POSTGRESQL_DATABASE=guestbook \
 	DB_HOST=localhost \
 	DB_PORT=5432
 
-VOLUME	/var/liv/pgsql/data
+VOLUME	/var/lib/pgsql/data
 
 EXPOSE	5432
