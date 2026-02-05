@@ -104,7 +104,6 @@ jobs:
           sed -i "s|ghcr.io/$REPO_OWNER/redis-container:.*|ghcr.io/$REPO_OWNER/redis-container:$IMAGE_TAG|g" k8s/redis-statefulSet.yaml
           sed -i "s|ghcr.io/$REPO_OWNER/postgres-container:.*|ghcr.io/$REPO_OWNER/postgres-container:$IMAGE_TAG|g" k8s/postgres-statefulSet.yaml
           
-          # Commit and push if there are changes
           if [[ -n $(git status -s) ]]; then
             git add .
             git commit -m "Update images to $IMAGE_TAG"
