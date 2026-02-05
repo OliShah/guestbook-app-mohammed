@@ -1,10 +1,10 @@
 From quay.io/fedora/postgresql-16:latest
 
-ENV	POSTGRESQL_DATABASE=guestbook \
-	POSTGRESQL_USER=guestbook \
-	POSTGRESQL_PASSWORD=password \
-	POSTGRESQL_DATA_DIR=/var/lib/pgsql/data \
-	DB_HOST=localhost \
+ENV	#POSTGRESQL_DATABASE=guestbook \
+	#POSTGRESQL_USER=guestbook \
+	#POSTGRESQL_PASSWORD=password \
+	#POSTGRESQL_DATA_DIR=/var/lib/pgsql/data \
+	#DB_HOST=localhost \
 	DB_PORT=5432
 
 VOLUME	/var/lib/pgsql/data
