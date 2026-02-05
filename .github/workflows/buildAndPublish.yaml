@@ -42,7 +42,7 @@ jobs:
           podman push ghcr.io/$REPO_OWNER/backend-container:$IMAGE_TAG
           podman push ghcr.io/$REPO_OWNER/backend-container:latest
 
-      - name: Frontend Build + Push
+      - name: Frontend Build+Push
         env:
           REPO_OWNER: olishah
           IMAGE_TAG: ${{ github.sha }}
